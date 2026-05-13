@@ -1,0 +1,9 @@
+[[CURRENCIES]]
+code = "HUMT"
+issuer = "GA7QAEOUMPF2PCG3IN4OG2UAAYVJBR6BGZKXXM2KI2QL5WDKMYOKDVXC"
+display_decimals = 7
+name = "Humanity Token"
+desc = "A decentralized utility token on the Pi Network designed to bridge human identity with global blockchain ecosystems."
+conditions = "Fixed supply of 600,000,000 tokens."
+image = "https://tunapac.github.io/Humanity-Coin-pi/logo.png"
+

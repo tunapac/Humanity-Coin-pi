@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanity coin</title>
+    <!-- Include the Pi SDK -->
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+</head>
+<body>
+    <h1>Humanity coin Ecosystem</h1>
+    <p>Empowering human existence on the Blockchain.</p>
+    
+    <button id="auth-btn">Authenticate with Pi</button>
+
+    <script>
+        // Initialize the Pi SDK for Testnet
+        Pi.init({ version: "2.0", sandbox: true });
+
+        document.getElementById('auth-btn').onclick = async () => {
+            try {
+                const scopes = ['payments', 'username'];
+                const auth = await Pi.authenticate(scopes, onIncompletePaymentFound);
+                console.log(`Hello, ${auth.user.username}!`);
+            } catch (err) {
+                console.error("Authentication failed", err);
+            }
+        };
+
+        function onIncompletePaymentFound(payment) {
+            // Handle incomplete payments here
+        };
+    </script>
+</body>
+</html>
+
