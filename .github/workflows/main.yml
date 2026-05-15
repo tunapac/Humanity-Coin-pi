@@ -1,0 +1,46 @@
+name: Build Humanity Ledger APK
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+<<<<<<< HEAD
+      - uses: actions/checkout@v4
+
+      - name: Install Build Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip build-essential git python3 python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev
+=======
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip build-essential git python3 python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev libgstreamer1.0-gstreamer-litedev libgstreamer-plugins-base1.0-dev
+>>>>>>> 972c816 (Triggering Cloud Forge for Humanity Ledger APK)
+          pip3 install --user --upgrade buildozer Cython==0.29.33
+
+      - name: Build with Buildozer
+        run: |
+          export PATH=$PATH:$HOME/.local/bin
+<<<<<<< HEAD
+          # This command creates the APK
+          buildozer android debug
+
+      - name: Upload Finished APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Humanity-Ledger-APK
+          path: bin/*.apk
+=======
+          buildozer android debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: Humanity-Ledger-APK
+          path: bin/*.apk
+
+>>>>>>> 972c816 (Triggering Cloud Forge for Humanity Ledger APK)

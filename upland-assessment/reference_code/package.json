@@ -1,0 +1,27 @@
+{
+  "name": "Truffle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node main.js",
+    "info": "node main.js info",
+    "test": "npx truffle test",
+    "test:candidate": "npx truffle test test/CandidateDynamicHouseEdgeTests.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^1.13.6",
+    "chai": "^4.2.0",
+    "truffle-assertions": "^0.9.1"
+  },
+  "dependencies": {
+    "bn.js": "^5.0.0",
+    "request": "^2.88.2"
+  }
+}
