@@ -1,0 +1,667 @@
+{
+  "_format": "hh3-artifact-1",
+  "contractName": "EthexTestOldJackpot",
+  "sourceName": "contracts/EthexTestOldJackpot.sol",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "numberEnd",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "monthlyNumberStartPrev",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "seasonalNumberStart",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "prevJackpots",
+      "outputs": [
+        {
+          "name": "start",
+          "type": "uint256"
+        },
+        {
+          "name": "end",
+          "type": "uint256"
+        },
+        {
+          "name": "processed",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "firstNumber",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dailyNumberStartPrev",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dailyNumberEndPrev",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "weeklyNumberStartPrev",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "amounts",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "seasonalStart",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "tickets",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dailyAmount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "monthlyAmount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "seasonalNumberStartPrev",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "numberStarts",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "lotoAddress",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "seasonalProcessed",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "weeklyEnd",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "weeklyNumberEndPrev",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "weeklyProcessed",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dailyEnd",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "migrate",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "previousJackpotBlockNumber",
+          "type": "uint256"
+        }
+      ],
+      "name": "setupUnprocessed",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "monthlyStart",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "monthlyNumberStart",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "seasonalNumberEndPrev",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "monthlyProcessed",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "seasonalEnd",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "monthlyNumberEndPrev",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "starts",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dailyProcessed",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "weeklyStart",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "monthlyEnd",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "weeklyNumberStart",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "weeklyAmount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dailyStart",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "newVersionAddress",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dailyNumberStart",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "ends",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "seasonalAmount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "number",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "count",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "jackpotType",
+          "type": "bytes1"
+        }
+      ],
+      "name": "Jackpot",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "number",
+          "type": "uint256"
+        }
+      ],
+      "name": "Ticket",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "winner",
+          "type": "address"
+        }
+      ],
+      "name": "Superprize",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50610be7806100206000396000f3fe608060405234801561001057600080fd5b50600436106102485760003560e01c80638401cec51161013b578063b91d3f95116100b8578063cde36cc11161007c578063cde36cc11461079b578063e23fe94e146107b9578063e96dbb6814610803578063f01279d114610821578063fb5182081461086357610248565b8063b91d3f9514610701578063b99e657114610723578063be94a4dc14610741578063c056fee31461075f578063ca16dfec1461077d57610248565b806399502012116100ff57806399502012146106435780639b1a09bc14610661578063a033a19c14610683578063a6df6ad4146106a1578063b5146b0c146106bf57610248565b80638401cec5146105b15780638fd3ab80146105cf578063904e36fd146105d95780639430c4801461060757806397b5a2621461062557610248565b806350b44712116101c9578063745366301161018d57806374536630146104e7578063755871b714610531578063764c8bf61461055357806378c9773b1461057157806383fbe8331461058f57610248565b806350b44712146103dd57806359c1334b1461044b5780636588439c146104695780636790baad146104875780637069177f146104a557610248565b806335b3e33f1161021057806335b3e33f146103235780633ae6e66a146103415780633dda3b3a1461035f57806345f0a44f1461037d5780634d8c999b146103bf57610248565b80630cb282c61461024d578063162d61cf1461026b5780631d2653b7146102895780631eb5b623146102a75780632173d6e914610305575b600080fd5b610255610881565b6040518082815260200191505060405180910390f35b610273610887565b6040518082815260200191505060405180910390f35b61029161088d565b6040518082815260200191505060405180910390f35b6102dd600480360360408110156102bd57600080fd5b810190808035906020019092919080359060200190929190505050610893565b6040518084815260200183815260200182151515158152602001935050505060405180910390f35b61030d6108da565b6040518082815260200191505060405180910390f35b61032b6108e0565b6040518082815260200191505060405180910390f35b6103496108e6565b6040518082815260200191505060405180910390f35b6103676108ec565b6040518082815260200191505060405180910390f35b6103a96004803603602081101561039357600080fd5b81019080803590602001909291905050506108f2565b6040518082815260200191505060405180910390f35b6103c761090a565b6040518082815260200191505060405180910390f35b610409600480360360208110156103f357600080fd5b8101908080359060200190929190505050610910565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610453610943565b6040518082815260200191505060405180910390f35b610471610949565b6040518082815260200191505060405180910390f35b61048f61094f565b6040518082815260200191505060405180910390f35b6104d1600480360360208110156104bb57600080fd5b8101908080359060200190929190505050610955565b6040518082815260200191505060405180910390f35b6104ef61096d565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610539610993565b604051808215151515815260200191505060405180910390f35b61055b6109a6565b6040518082815260200191505060405180910390f35b6105796109ac565b6040518082815260200191505060405180910390f35b6105976109b2565b604051808215151515815260200191505060405180910390f35b6105b96109c5565b6040518082815260200191505060405180910390f35b6105d76109cb565b005b610605600480360360208110156105ef57600080fd5b81019080803590602001909291905050506109cd565b005b61060f610aee565b6040518082815260200191505060405180910390f35b61062d610af4565b6040518082815260200191505060405180910390f35b61064b610afa565b6040518082815260200191505060405180910390f35b610669610b00565b604051808215151515815260200191505060405180910390f35b61068b610b13565b6040518082815260200191505060405180910390f35b6106a9610b19565b6040518082815260200191505060405180910390f35b6106eb600480360360208110156106d557600080fd5b8101908080359060200190929190505050610b1f565b6040518082815260200191505060405180910390f35b610709610b37565b604051808215151515815260200191505060405180910390f35b61072b610b4a565b6040518082815260200191505060405180910390f35b610749610b50565b6040518082815260200191505060405180910390f35b610767610b56565b6040518082815260200191505060405180910390f35b610785610b5c565b6040518082815260200191505060405180910390f35b6107a3610b62565b6040518082815260200191505060405180910390f35b6107c1610b68565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61080b610b8e565b6040518082815260200191505060405180910390f35b61084d6004803603602081101561083757600080fd5b8101908080359060200190929190505050610b94565b6040518082815260200191505060405180910390f35b61086b610bac565b6040518082815260200191505060405180910390f35b60125481565b601c5481565b60295481565b600160205281600052604060002081600481106108ac57fe5b60030201600091509150508060000154908060010154908060020160009054906101000a900460ff16905083565b60135481565b601a5481565b602a5481565b601b5481565b600281600481106108ff57fe5b016000915090505481565b60215481565b60006020528060005260406000206000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60145481565b60165481565b601d5481565b600e816004811061096257fe5b016000915090505481565b601860049054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b601860039054906101000a900460ff1681565b60235481565b602b5481565b601860019054906101000a900460ff1681565b60225481565b565b60016012819055506001601a819055506001601b819055506001601c819055506001601d819055506001601860006101000a81548160ff0219169083151502179055506001601860016101000a81548160ff0219169083151502179055506001601860026101000a81548160ff0219169083151502179055506001601860036101000a81548160ff02191690831515021790555080601e8190555080601f81905550806020819055508060218190555061138881016022819055506188b88101602381905550620249f081016024819055506206ddd0810160258190555060016026819055506001602781905550600160288190555060016029819055506001602a819055506001602b819055506001602c819055506001602d8190555050565b60205481565b60285481565b602d5481565b601860029054906101000a900460ff1681565b60255481565b602c5481565b60068160048110610b2c57fe5b016000915090505481565b601860009054906101000a900460ff1681565b601f5481565b60245481565b60275481565b60155481565b601e5481565b601960009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60265481565b600a8160048110610ba157fe5b016000915090505481565b6017548156fea265627a7a72305820014228e175684892403a3ac62f6abf83549dc148999c3c897e0288483956d17864736f6c634300050a0032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106102485760003560e01c80638401cec51161013b578063b91d3f95116100b8578063cde36cc11161007c578063cde36cc11461079b578063e23fe94e146107b9578063e96dbb6814610803578063f01279d114610821578063fb5182081461086357610248565b8063b91d3f9514610701578063b99e657114610723578063be94a4dc14610741578063c056fee31461075f578063ca16dfec1461077d57610248565b806399502012116100ff57806399502012146106435780639b1a09bc14610661578063a033a19c14610683578063a6df6ad4146106a1578063b5146b0c146106bf57610248565b80638401cec5146105b15780638fd3ab80146105cf578063904e36fd146105d95780639430c4801461060757806397b5a2621461062557610248565b806350b44712116101c9578063745366301161018d57806374536630146104e7578063755871b714610531578063764c8bf61461055357806378c9773b1461057157806383fbe8331461058f57610248565b806350b44712146103dd57806359c1334b1461044b5780636588439c146104695780636790baad146104875780637069177f146104a557610248565b806335b3e33f1161021057806335b3e33f146103235780633ae6e66a146103415780633dda3b3a1461035f57806345f0a44f1461037d5780634d8c999b146103bf57610248565b80630cb282c61461024d578063162d61cf1461026b5780631d2653b7146102895780631eb5b623146102a75780632173d6e914610305575b600080fd5b610255610881565b6040518082815260200191505060405180910390f35b610273610887565b6040518082815260200191505060405180910390f35b61029161088d565b6040518082815260200191505060405180910390f35b6102dd600480360360408110156102bd57600080fd5b810190808035906020019092919080359060200190929190505050610893565b6040518084815260200183815260200182151515158152602001935050505060405180910390f35b61030d6108da565b6040518082815260200191505060405180910390f35b61032b6108e0565b6040518082815260200191505060405180910390f35b6103496108e6565b6040518082815260200191505060405180910390f35b6103676108ec565b6040518082815260200191505060405180910390f35b6103a96004803603602081101561039357600080fd5b81019080803590602001909291905050506108f2565b6040518082815260200191505060405180910390f35b6103c761090a565b6040518082815260200191505060405180910390f35b610409600480360360208110156103f357600080fd5b8101908080359060200190929190505050610910565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610453610943565b6040518082815260200191505060405180910390f35b610471610949565b6040518082815260200191505060405180910390f35b61048f61094f565b6040518082815260200191505060405180910390f35b6104d1600480360360208110156104bb57600080fd5b8101908080359060200190929190505050610955565b6040518082815260200191505060405180910390f35b6104ef61096d565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610539610993565b604051808215151515815260200191505060405180910390f35b61055b6109a6565b6040518082815260200191505060405180910390f35b6105796109ac565b6040518082815260200191505060405180910390f35b6105976109b2565b604051808215151515815260200191505060405180910390f35b6105b96109c5565b6040518082815260200191505060405180910390f35b6105d76109cb565b005b610605600480360360208110156105ef57600080fd5b81019080803590602001909291905050506109cd565b005b61060f610aee565b6040518082815260200191505060405180910390f35b61062d610af4565b6040518082815260200191505060405180910390f35b61064b610afa565b6040518082815260200191505060405180910390f35b610669610b00565b604051808215151515815260200191505060405180910390f35b61068b610b13565b6040518082815260200191505060405180910390f35b6106a9610b19565b6040518082815260200191505060405180910390f35b6106eb600480360360208110156106d557600080fd5b8101908080359060200190929190505050610b1f565b6040518082815260200191505060405180910390f35b610709610b37565b604051808215151515815260200191505060405180910390f35b61072b610b4a565b6040518082815260200191505060405180910390f35b610749610b50565b6040518082815260200191505060405180910390f35b610767610b56565b6040518082815260200191505060405180910390f35b610785610b5c565b6040518082815260200191505060405180910390f35b6107a3610b62565b6040518082815260200191505060405180910390f35b6107c1610b68565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61080b610b8e565b6040518082815260200191505060405180910390f35b61084d6004803603602081101561083757600080fd5b8101908080359060200190929190505050610b94565b6040518082815260200191505060405180910390f35b61086b610bac565b6040518082815260200191505060405180910390f35b60125481565b601c5481565b60295481565b600160205281600052604060002081600481106108ac57fe5b60030201600091509150508060000154908060010154908060020160009054906101000a900460ff16905083565b60135481565b601a5481565b602a5481565b601b5481565b600281600481106108ff57fe5b016000915090505481565b60215481565b60006020528060005260406000206000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60145481565b60165481565b601d5481565b600e816004811061096257fe5b016000915090505481565b601860049054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b601860039054906101000a900460ff1681565b60235481565b602b5481565b601860019054906101000a900460ff1681565b60225481565b565b60016012819055506001601a819055506001601b819055506001601c819055506001601d819055506001601860006101000a81548160ff0219169083151502179055506001601860016101000a81548160ff0219169083151502179055506001601860026101000a81548160ff0219169083151502179055506001601860036101000a81548160ff02191690831515021790555080601e8190555080601f81905550806020819055508060218190555061138881016022819055506188b88101602381905550620249f081016024819055506206ddd0810160258190555060016026819055506001602781905550600160288190555060016029819055506001602a819055506001602b819055506001602c819055506001602d8190555050565b60205481565b60285481565b602d5481565b601860029054906101000a900460ff1681565b60255481565b602c5481565b60068160048110610b2c57fe5b016000915090505481565b601860009054906101000a900460ff1681565b601f5481565b60245481565b60275481565b60155481565b601e5481565b601960009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60265481565b600a8160048110610ba157fe5b016000915090505481565b6017548156fea265627a7a72305820014228e175684892403a3ac62f6abf83549dc148999c3c897e0288483956d17864736f6c634300050a0032",
+  "linkReferences": {},
+  "deployedLinkReferences": {},
+  "immutableReferences": {},
+  "inputSourceName": "project/contracts/EthexTestOldJackpot.sol",
+  "buildInfoId": "solc-0_5_10-19f8968109a3c64db3a420b936261e87d1bc5a4e"
+}

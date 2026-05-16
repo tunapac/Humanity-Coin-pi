@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "truffle": "^5.11.5"
+  },
+  "_npx": {
+    "packages": [
+      "truffle"
+    ]
+  }
+}

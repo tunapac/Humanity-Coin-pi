@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunapac Humanledger Hub</title>
+    <style>
+        :root { --bg: #030508; --card: #090e15; --neon: #00f0ff; --purple: #bf55ec; --text: #cbd5e1; --border: #1e293b; --gold: #ffd700; }
+        body { font-family: monospace; background-color: var(--bg); color: var(--text); padding: 20px; margin: 0; }
+        header { text-align: center; margin-bottom: 25px; border-bottom: 2px dashed var(--neon); padding-bottom: 15px; }
+        h1 { color: #fff; text-shadow: 0 0 12px var(--neon); font-size: 1.35rem; margin: 0; text-transform: uppercase; }
+        .stats-banner { background: #0f172a; border: 1px solid var(--gold); padding: 12px; border-radius: 6px; display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 0.85rem; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        @media (min-width: 992px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        .card { background: var(--card); border: 1px solid var(--border); padding: 15px; border-radius: 6px; border-left: 4px solid var(--neon); position: relative; }
+        .card.p { border-left-color: var(--purple); }
+        h2 { color: #fff; margin-top: 0; font-size: 0.95rem; text-transform: uppercase; border-bottom: 1px solid var(--border); padding-bottom: 5px; letter-spacing: 1px; }
+        .group { margin-bottom: 10px; }
+        label { display: block; font-size: 0.7rem; color: #64748b; margin-bottom: 3px; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 7px; background: #0f172a; border: 1px solid var(--border); color: #fff; font-family: monospace; border-radius: 4px; box-sizing: border-box; font-size: 0.8rem; }
+        button { background: var(--neon); color: #000; border: none; padding: 9px; width: 100%; cursor: pointer; font-weight: bold; border-radius: 4px; text-transform: uppercase; font-size: 0.8rem; margin-top: 5px; }
+        button:hover { box-shadow: 0 0 10px var(--neon); }
+        button.purple-btn { background: var(--purple); color: #fff; }
+        button.purple-btn:hover { box-shadow: 0 0 10px var(--purple); }
+        .console { margin-top: 20px; background: #000; border: 1px solid var(--neon); padding: 12px; border-radius: 4px; max-height: 250px; overflow-y: auto; color: #39ff14; font-size: 0.8rem; line-height: 1.4; }
+        .pay-badge { position: absolute; top: 12px; right: 15px; font-size: 0.7rem; color: var(--gold); border: 1px solid var(--gold); padding: 2px 6px; border-radius: 3px; background: rgba(255,215,0,0.05); }
+        .login-overlay { background: #0b132b; border: 2px solid var(--neon); padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>💎 TUNAPAC HUMANLEDGER HUB PLATFORM</h1>
+        <div style="color: var(--purple); font-size: 0.75rem; margin-top:4px;">Compliant Native App Architecture - 1 Pi = 5 $HUMT Integration</div>
+    </header>
+
+    <div class="login-overlay" id="auth-deck">
+        <h2>🔒 Pioneer Authentication Gate</h2>
+        <div style="max-width: 400px; margin: 0 auto;">
+            <input type="text" id="dev-username-input" value="Developer_Node" style="margin-bottom:10px; text-align:center;">
+            <button onclick="triggerPioneerLogin()">Initialize Secure Session</button>
+        </div>
+    </div>
+
+    <div class="stats-banner">
+        <div>Verified Node: <span id="user-node" style="color: var(--neon); font-weight:bold;">UNVERIFIED</span></div>
+        <div>Liquid Staking Credit: <span id="user-humt" style="color: var(--gold); font-weight:bold;">0.00</span> $HUMT</div>
+        <div>Metric Formula: <span style="color: var(--neon);">1 Pi = 5 $HUMT</span></div>
+    </div>
+
+    <div class="grid" id="main-ecosystem-grid" style="opacity: 0.1; pointer-events: none; transition: opacity 0.4s ease;">
+        
+        <div class="card">
+            <span class="pay-badge">Cost: 10 $HUMT / 2 Pi</span>
+            <h2>🤖 Quantum AI GPT 7.0 Assistant</h2>
+            <div class="group"><label>Input Coding, Website or Life Query</label><textarea id="gpt7-query" rows="2" placeholder="Build a responsive webpage script..."></textarea></div>
+            <div class="group"><label>Execution Language Target</label><input type="text" id="gpt7-lang" value="JavaScript Fullstack"></div>
+            <div class="group"><label>Payment Network</label><select id="gpt7-pay"><option value="HUMT">$HUMT Layer</option><option value="Pi">Pi Protocol</option></select></div>
+            <button onclick="executeGpt7()">Consult Engine</button>
+        </div>
+
+        <div class="card p">
+            <span class="pay-badge">Cost: 50 $HUMT / 10 Pi</span>
+            <h2>🚀 Quantum AI App Studio</h2>
+            <div class="group"><label>Application Title</label><input type="text" id="studio-name" placeholder="Commerce Matrix Variant"></div>
+            <div class="group"><label>Target Framework Base</label><select id="studio-stack"><option value="Express Node / HTML5">Express Node / HTML5</option></select></div>
+            <div class="group"><label>Payment Network</label><select id="studio-pay"><option value="HUMT">$HUMT Layer</option><option value="Pi">Pi Protocol</option></select></div>
+            <button class="purple-btn" onclick="executeAppStudio()">Deploy Repository</button>
+        </div>
+
+        <div class="card">
+            <span class="pay-badge">Cost: 15 $HUMT / 3 Pi</span>
+            <h2>🔍 Quantum Profile Risk Detector</h2>
+            <div class="group"><label>Payment Network</label><select id="detector-pay"><option value="HUMT">$HUMT Layer</option><option value="Pi">Pi Protocol</option></select></div>
+            <button onclick="executeProfileDetector()">Scan Identity Frame</button>
+        </div>
+
+        <div class="card p">
+            <span class="pay-badge">Cost: 20 $HUMT / 4 Pi</span>
+            <h2>🛡️ Quantum Cybersecurity Matrix</h2>
+            <div class="group"><label>Server Node Loopback Address</label><input type="text" id="cyber-node" value="127.0.0.1:3000"></div>
+            <div class="group"><label>Payment Network</label><select id="cyber-pay"><option value="HUMT">$HUMT Layer</option><option value="Pi">Pi Protocol</option></select></div>
+            <button class="purple-btn" onclick="executeCybersecurity()">Shield Terminal Variables</button>
+        </div>
+
+        <div class="card">
+            <span class="pay-badge">Cost: 15 $HUMT / 3 Pi</span>
+            <h2>✍️ Quantum AI Signatories Generator Machine</h2>
+            <div class="group"><label>Document Title / Agreement Blueprint</label><input type="text" id="sig-title" placeholder="Sovereign Developer Deed"></div>
+            <div class="group"><label>Payment Network</label><select id="sig-pay"><option value="HUMT">$HUMT Layer</option><option value="Pi">Pi Protocol</option></select></div>
+            <button onclick="executeSignatories()">Synthesize Signature Seal</button>
+        </div>
+
+        <div class="card p">
+            <span class="pay-badge">Cost: 5 $HUMT / 1 Pi</span>
+            <h2>🎨 Quantum AI Logo & Colour Machine</h2>
+            <div class="group"><label>Subsystem Seed Name</label><input type="text" id="brand-seed" placeholder="Arcade Node Mesh"></div>
+            <div class="group"><label>Payment Network</label><select id="brand-pay"><option value="HUMT">$HUMT Layer</option><option value="Pi">Pi Protocol</option></select></div>
+            <button class="purple-btn" onclick="executeBranding()">Compile Visual Identity</button>
+            <div id="branding-output-box" style="margin-top:10px; display:none; text-align:center;"></div>
+        </div>
+
+        <div class="card">
+            <h2>🎮 Tunapac Hub Native Arcade (49-Game License)</h2>
+            <p style="font-size:0.7rem; color:#94a3b8; margin-bottom:8px;">Launches compliant local games without external L1 chain references.</p>
+            <div class="group"><label>Select Game Registry Variant</label>
+                <select id="arcade-game-id">
+                    <option value="1">3D WebXR Reality Runner (Game #1)</option>
+                    <option value="15">Matrix Grid Tactical Core (Game #15)</option>
+                    <option value="49">Sovereign Space Strategy (Game #49)</option>
+                </select>
+            </div>
+            <button onclick="launchArcadeSession()">Launch Compliant Game Framework</button>
+        </div>
+
+        <div class="card p">
+            <span class="pay-badge">Cost: 50 $HUMT / 10 Pi</span>
+            <h2>💎 Quantum NFT Forge & Marketplace Deck</h2>
+            <div class="group"><label>Collectible Asset Designator Name</label><input type="text" id="nft-name" placeholder="Origin Node Alpha #01"></div>
+            <div class="group"><label>Payment Network</label><select id="nft-pay"><option value="HUMT">$HUMT Layer</option><option value="Pi">Pi Protocol</option></select></div>
+            <button class="purple-btn" onclick="executeMintNft()">Forge Superposition Asset</button>
+        </div>
+
+        <div class="card">
+            <h2>⚖️ Variable-Weight Consensus Voting Terminal</h2>
+            <div id="proposal-box" style="background:#0f172a; padding:10px; border-radius:4px; font-size:0.8rem; margin-bottom:10px;">Checking Proposal Ledger...</div>
+            <div class="group"><label>Commit Voting Weight Balance ($HUMT Pledge Amount)</label><input type="number" id="vote-weight" value="100"></div>
+            <div style="display:flex; gap:10px;">
+                <button style="background:#2ea44f; color:#fff;" onclick="submitVote('YES')">Vote YES</button>
+                <button style="background:#da3637; color:#fff;" onclick="submitVote('NO')">Vote NO</button>
+            </div>
+        </div>
+
+        <div class="card p">
+            <h2>🗺️ Spatial Land Collateral Vault (65% LTV)</h2>
+            <div class="group"><label>Virtual Plot Registry Reference Code</label><input type="text" id="land-plot" value="PLOT-MESH-ZONE-7A"></div>
+            <div class="group"><label>Assessed Valuation Amount</label><input type="number" id="land-val" value="2500"></div>
+            <button class="purple-btn" onclick="executeLandVault()">Stake Plot Asset</button>
+        </div>
+
+    </div>
+
+    <div class="console" id="log-view">> [Security Notice] Verify pioneer loop credentials to open workspace dashboards.</div>
+
+    <script>
+        const API = window.location.origin;
+        let currentUser = null;
+
+        function triggerPioneerLogin() {
+            const user = document.getElementById('dev-username-input').value.trim() || "Developer_Node";
+            fetch(`${API}/api/pioneer/verify-login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ accessToken: "sandbox_dev_bypass_token", username: user })
+            }).then(res => res.json()).then(data => {
+                currentUser = data.username;
+                document.getElementById('user-node').innerText = "@" + currentUser;
+                document.getElementById('auth-deck').style.display = "none";
+                document.getElementById('main-ecosystem-grid').style.opacity = "1";
+                document.getElementById('main-ecosystem-grid').style.pointerEvents = "auto";
+                log(`[ACCESS ESTABLISHED] Node verified safely: @${currentUser}`);
+                refreshDashboard();
+            });
+        }
+
+        function refreshDashboard() {
+            if(!currentUser) return;
+            fetch(`${API}/api/humanity/user/${currentUser}`).then(res => res.json()).then(data => {
+                document.getElementById('user-humt').innerText = data.balance.toFixed(2);
+            });
+            fetch(`${API}/api/governance/proposals}`).then(res => res.json()).then(data => {
+                if(!data.proposals) return;
+                const prop = data.proposals["PROP-TUNAPAC-01"];
+                document.getElementById('proposal-box').innerHTML = `<strong>📄 ${prop.title}</strong><br><span style="color:#2ea44f">YES Pledged: ${prop.yesVotes} $HUMT</span> | <span style="color:#ffd700">NO Pledged: ${prop.noVotes} $HUMT</span>`;
+            });
+        }
+
+        function executeGpt7() {
+            fetch(`${API}/api/quantum/gpt7-assistant`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: currentUser, promptQuery: document.getElementById('gpt7-query').value, targetLanguage: document.getElementById('gpt7-lang').value, paymentType: document.getElementById('gpt7-pay').value })
+            }).then(res => res.json()).then(data => {
+                if(data.error) return log(`[REJECTED] ${data.error}`);
+                log(`[GPT 7.0 OUTPUT via ${data.payDetails.method}]:\n${data.response}`);
+                refreshDashboard();
+            });
+        }
+
+        function executeAppStudio() {
+            fetch(`${API}/api/quantum/app-studio`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: currentUser, appName: document.getElementById('studio-name').value, frameworkStack: document.getElementById('studio-stack').value, paymentType: document.getElementById('studio-pay').value })
+            }).then(res => res.json()).then(data => {
+                if(data.error) return log(`[REJECTED] ${data.error}`);
+                log(`[APP STUDIO COMPLETE]: Formed deployment node ${data.appId}.\nManifest Data: ${data.configManifest}`);
+                refreshDashboard();
+            });
+        }
+
+        function executeProfileDetector() {
+            fetch(`${API}/api/quantum/profile-detector`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: currentUser, paymentType: document.getElementById('detector-pay').value })
+            }).then(res => res.json()).then(data => {
+                if(data.error) return log(`[REJECTED] ${data.error}`);
+                log(`[RISK DETECTOR REPORT]:\n-> Bottleneck: ${data.presentBottleneck}\n-> Next Liability Risk: ${data.futureRiskScenario}\n-> Prescribed Solution: ${data.preferredPrescriptiveSolution}`);
+                refreshDashboard();
+            });
+        }
+
+        function executeCybersecurity() {
+            fetch(`${API}/api/quantum/cyber-security`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: currentUser, nodeAddress: document.getElementById('cyber-node').value, paymentType: document.getElementById('cyber-pay').value })
+            }).then(res => res.json()).then(data => {
+                if(data.error) return log(`[REJECTED] ${data.error}`);
+                log(`[SECURITY LAYER ALIGNED]: Shield Status: ${data.nodeStatus} (${data.integrityIndex} Secure). Deflected ${data.activeThreatsDeflected} system attempts via ${data.defenseProtocolApplied}.`);
+                refreshDashboard();
+            });
+        }
+
+        function executeSignatories() {
+            fetch(`${API}/api/quantum/signatory-generate`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: currentUser, documentTitle: document.getElementById('sig-title').value, paymentType: document.getElementById('sig-pay').value })
+            }).then(res => res.json()).then(data => {
+                if(data.error) return log(`[REJECTED] ${data.error}`);
+                log(`[SIGNATURE synthesis COMPLETE]: Generated Cryptographic Vault Seal Hash: ${data.signatureHash} for Deed: "${data.targetDeed}"`);
+                refreshDashboard();
+            });
+        }
+
+        function executeBranding() {
+            fetch(`${API}/api/quantum/branding-compiler`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: currentUser, brandSeed: document.getElementById('brand-seed').value, paymentType: document.getElementById('brand-pay').value })
+            }).then(res => res.json()).then(data => {
+                if(data.error) return log(`[REJECTED] ${data.error}`);
+                log(`[BRAND VISUAL GENERATOR]: Compiled Hex: <span style="color:${data.hexColor}">${data.hexColor}</span> | Label System: ${data.symbol}`);
+                const displayBox = document.getElementById('branding-output-box');
+                displayBox.style.display = "block";
+                displayBox.innerHTML = `<p style="font-size:0.7rem; color:#64748b;">COMPILED LOGO APP BRAND VECTOR SVG Asset:</p>${data.rawLogoSvg}`;
+                refreshDashboard();
+            });
+        }
+
+        function launchArcadeSession() {
+            const gId = document.getElementById('arcade-game-id').value;
+            fetch(`${API}/api/arcade/session-start`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: currentUser, gameId: gId })
+            }).then(res => res.json()).then(data => {
+                log(`[ARCADE BOOT]: Verified local P2E Session Token ${data.sessionToken}. Running: "${data.gameTitle}"`);
+            });
+        }
+
+        function executeMintNft() {
+            fetch(`${API}/api/marketplace/mint`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: currentUser, assetName: document.getElementById('nft-name').value, paymentType: document.getElementById('nft-pay').value })
+            }).then(res => res.json()).then(data => {
+                if(data.error) return log(`[REJECTED] ${data.error}`);
+                log(`[NFT FORGE SUCCESS]: Minted Asset ID: ${data.tokenId} Name: "${data.nft.name}" | Applied Rarity Rung: [${data.nft.rarity}]`);
+                refreshDashboard();
+            });
+        }
+
+        function submitVote(choice) {
+            fetch(`${API}/api/governance/vote`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: currentUser, proposalId: "PROP-TUNAPAC-01", voteSelection: choice, voteWeight: document.getElementById('vote-weight').value })
+            }).then(res => res.json()).then(data => {
+                if(data.error) return log(`[VOTE BLOCKED] ${data.error}`);
+                log(`[CONSENSUS SUCCESS]: Pledged customized weight parameters to choice [${choice}].`);
+                refreshDashboard();
+            });
+        }
+
+        function executeLandVault() {
+            fetch(`${API}/api/metaverse/land-collateral`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ plotReferenceCode: document.getElementById('land-plot').value, assessedValuationAmount: document.getElementById('land-val').value })
+            }).then(res => res.json()).then(data => {
+                log(`[ESCROW VAULT REPORT]: Registered Plot ${data.plotStamped} into Secure Vault ${data.vaultUuid}. Approved 65% LTV Credit Line Limit: ${data.borrowLimit} $HUMT. WebXR Telemetry Loop Status: ACTIVE.`);
+            });
+        }
+
+        function log(msg) {
+            const view = document.getElementById('log-view');
+            view.innerHTML += `<br>> ${msg.replace(/\n/g, '<br>')}`;
+            view.scrollTop = view.scrollHeight;
+        }
+    </script>
+</body>
+</html>
