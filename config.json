@@ -1,0 +1,11 @@
+{
+  "projectName": "Humanledger",
+  "totalSupply": 700000000,
+  "tld": "huma",
+  "environment": {
+    "isStandaloneHardware": true,
+    "p2pPort": 4001,
+    "httpPort": 3000,
+    "awsPublicIp": "52.87.213.65"
+  }
+}

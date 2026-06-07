@@ -5,291 +5,180 @@ const path = require('path');
 const crypto = require('crypto');
 const axios = require('axios');
 
-const app = reportAppLayer();
-function reportAppLayer() {
-    const serverInstance = express();
-    serverInstance.use(cors());
-    serverInstance.use(bodyParser.json());
-    return serverInstance;
-}
-
-app.use(express.static(path.join(__dirname, 'public')));
+const app = express();
 const PORT = 3000;
 
-// =======================================================
-// 🪙 TUNAPAC ECOSYSTEM METRICS & TOKEN REGISTRIES
-// =======================================================
-const FIXED_SUPPLY_HUMT = 600000000; // 600M Fixed Supply on Pi Blockchain Matrix
-let userHumtBalances = {
-    "test_pioneer": 2500.00,
-    "Developer_Node": 850000.00 
-};
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// --- DATA REGISTRIES & CORE ESCROWS ---
-let nftRegistry = [];
-let activeProposals = {
-    "PROP-TUNAPAC-01": { title: "Establish Autonomous Grid Layer Protection Shield", yesVotes: 0, noVotes: 0, votedUsers: {} }
-};
+// ====================================================
+//  GLOBAL STATE & CONFIGURATIONS
+// ====================================================
+const FIXED_SUPPLY_HUMT = 600000000;
+let web3DnsRegistry = {};   
+let userHumtBalances = {};   
+let walletToUserMap = {};    
 
-// Payment distribution algorithm following the strict 1 Pi = 5 $HUMT parameter
-function verifyAndProcessEcosystemDeduction(username, humtFee, piFee, choiceMode) {
-    if (!userHumtBalances[username]) userHumtBalances[username] = 0.00;
-    
-    if (choiceMode === 'HUMT') {
-        if (userHumtBalances[username] < humtFee) return { error: "Insufficient liquid $HUMT wallet balance." };
-        userHumtBalances[username] -= humtFee;
-        return { success: true, method: 'HUMT', activeBalance: userHumtBalances[username] };
-    } else if (choiceMode === 'Pi') {
-        const structuralWeightValue = piFee * 5; // Implements dynamic 1 Pi = 5 HUMT settlement logic
-        if (userHumtBalances[username] < structuralWeightValue) return { error: "Inadequate equivalent Pi settlement assets detected." };
-        userHumtBalances[username] -= structuralWeightValue;
-        return { success: true, method: 'Pi Network Protocol', activeBalance: userHumtBalances[username] };
-    }
-    return { error: "Invalid currency processing layer specified." };
+// P2P Swarm Nodes & Web3 RPC Infrastructure Targets
+let peerNodes = []; 
+const WEB3_RPC_PROVIDER = "https://rpc.ankr.com/eth"; 
+
+// ====================================================
+//  MODULE A: DECENTRALIZED P2P SWARM NETWORK BRIDGE
+// ====================================================
+
+// Broadcast updated DNS routes to all connected P2P peers
+async function broadcastToP2PSwarm(endpoint, payload) {
+    console.log(`📡 Swarm: Broadcasting payload to peers...`);
+    peerNodes.forEach(async (peer) => {
+        try {
+            await axios.post(`${peer}${endpoint}`, payload, { timeout: 2000 });
+            console.log(`✅ Swarm: Synced successfully with peer: ${peer}`);
+        } catch (err) {
+            console.log(`❌ Swarm: Peer ${peer} unreachable. Line dropped.`);
+        }
+    });
 }
 
-// =======================================================
-// 🔐 PIONEER DUAL-VERIFICATION SECURE SIGN-IN GATE
-// =======================================================
-app.post('/api/pioneer/verify-login', async (req, res) => {
-    const { accessToken, username } = req.body;
-    if (accessToken === "sandbox_dev_bypass_token") {
-        if (!userHumtBalances[username]) userHumtBalances[username] = 500.00;
-        return res.json({ success: true, username: username, uid: "TUNAPAC-SANDBOX-" + username.toUpperCase(), balance: userHumtBalances[username] });
+// Receive incoming DNS state sync requests from other Web3 nodes
+app.post('/api/p2p/sync-dns', (req, res) => {
+    const { domain, walletAddress } = req.body;
+    if (domain && walletAddress) {
+        web3DnsRegistry[domain] = walletAddress;
+        console.log(`🔗 P2P Sync: Bound ${domain} -> ${walletAddress}`);
+        return res.json({ success: true, message: "State synced" });
     }
-    try {
-        // Secure server-to-server validation call to the official Pi Network API backend
-        const verification = await axios.get('https://api.minepi.com/v2/me', {
-            headers: { 'Authorization': `Bearer ${accessToken}` }
-        });
-        const verifiedUsername = verification.data.username;
-        if (!userHumtBalances[verifiedUsername]) userHumtBalances[verifiedUsername] = 0.00;
-        return res.json({ success: true, username: verifiedUsername, uid: verification.data.uid, balance: userHumtBalances[verifiedUsername] });
-    } catch (error) {
-        return res.status(401).json({ error: "Cryptographic Pi authentication token rejected." });
-    }
+    return res.status(400).json({ error: "Malformed P2P packet" });
 });
 
-// Liquidity Swap Bridge Core Endpoint
-app.post('/payments/complete', (req, res) => {
-    const { username, actionType, amountPi } = req.body;
-    if (!userHumtBalances[username]) userHumtBalances[username] = 0;
-    if (actionType === 'swap_humt') {
-        const allocationPool = parseFloat(amountPi || 1) * 5;
-        userHumtBalances[username] += allocationPool;
-    }
-    res.json({ success: true, balance: userHumtBalances[username] });
-});
-
-app.get('/api/humanity/user/:username', (req, res) => {
-    res.json({ username: req.params.username, balance: userHumtBalances[req.params.username] || 0.00, globalSupply: FIXED_SUPPLY_HUMT });
-});
-
-// =======================================================
-// 🧠 INTEGRATED UTILITY PIPELINES: QUANTUM AI HUB SUITE
-// =======================================================
-
-// Utility 1: Quantum AI GPT 7.0 Assistant (Coding, Web Building, Existential Resolution)
-app.post('/api/quantum/gpt7-assistant', (req, res) => {
-    const { username, promptQuery, targetLanguage, paymentType } = req.body;
-    const payment = verifyAndProcessEcosystemDeduction(username, 10, 2, paymentType);
-    if (payment.error) return res.status(400).json({ error: payment.error });
-
-    const trackingHash = crypto.randomBytes(4).toString('hex').toUpperCase();
-    let computedResult = "";
-
-    if (promptQuery.toLowerCase().includes("code") || promptQuery.toLowerCase().includes("website") || promptQuery.toLowerCase().includes("build")) {
-        computedResult = `// [TUNAPAC QUANTUM GPT 7.0 CORE ENGINEER - LOG ID ${trackingHash}]\n` +
-                         `// Framework Context Target: ${targetLanguage || 'HTML5 Native Fullstack Layer'}\n` +
-                         `function runSovereignSystem() {\n  const humtRate = 5;\n  console.log("Ecosystem operational infrastructure running on Port 3000.");\n}`;
-    } else {
-        computedResult = `[TUNAPAC QUANTUM GPT 7.0 EXISTENTIAL ORACLE RESPONSE] -> Problem vectors evaluated. Strategic remediation path dictates immediate local cache cleanup, strict asset modularization within your environment loops, and clean distributed load handling.`;
-    }
-    res.json({ success: true, response: computedResult, payDetails: payment });
-});
-
-// Utility 2: Quantum AI App Studio for Developers
-app.post('/api/quantum/app-studio', (req, res) => {
-    const { username, appName, frameworkStack, paymentType } = req.body;
-    const payment = verifyAndProcessEcosystemDeduction(username, 50, 10, paymentType);
-    if (payment.error) return res.status(400).json({ error: payment.error });
-
-    res.json({
-        success: true,
-        appId: "TUNAPAC-STUDIO-" + crypto.randomBytes(4).toString('hex').toUpperCase(),
-        deploymentStatus: "LOCAL_WORKSPACE_INITIALIZED",
-        configManifest: `{"applicationName": "${appName}", "targetEngine": "${frameworkStack}", "piEcosystemCompliant": true}`,
-        payDetails: payment
-    });
-});
-
-// Utility 3: Quantum AI User Profile Risk Detector
-app.post('/api/quantum/profile-detector', (req, res) => {
-    const { username, paymentType } = req.body;
-    const payment = verifyAndProcessEcosystemDeduction(username, 15, 3, paymentType);
-    if (payment.error) return res.status(400).json({ error: payment.error });
-
-    res.json({
-        success: true,
-        presentBottleneck: "Congested local data transmission pipelines running on high-latency client loops.",
-        futureRiskScenario: "Memory leaks across real-time socket listeners under heavy network load cycles.",
-        preferredPrescriptiveSolution: "Inject automated garbage collection handlers directly into your client state loops immediately.",
-        payDetails: payment
-    });
-});
-
-// Utility 4: Quantum AI Cybersecurity Threat Matrix
-app.post('/api/quantum/cyber-security', (req, res) => {
-    const { username, nodeAddress, paymentType } = req.body;
-    const payment = verifyAndProcessEcosystemDeduction(username, 20, 4, paymentType);
-    if (payment.error) return res.status(400).json({ error: payment.error });
-
-    res.json({
-        success: true,
-        nodeStatus: "SHIELDED",
-        integrityIndex: "99.998%",
-        activeThreatsDeflected: Math.floor(Math.random() * 4) + 1,
-        defenseProtocolApplied: "Quantum Lattice Cryptographic Tunnel Isolation",
-        payDetails: payment
-    });
-});
-g
-// Utility 5: Quantum AI Multilingual Processor
-app.post('/api/quantum/multilingual', (req, res) => {
-    const { username, rawPayload, sourceLang, targetLang, paymentType } = req.body;
-    const payment = verifyAndProcessEcosystemDeduction(username, 5, 1, paymentType);
-    if (payment.error) return res.status(400).json({ error: payment.error });
-
-    res.json({
-        success: true,
-        processedString: `[Quantum Translation Matrix Core] Successfully converted [${sourceLang}] to [${targetLang}] -> "${rawPayload}"`,
-        payDetails: payment
-    });
-});
-
-// Utility 6: Quantum AI Tarots Human-Centric Physics & Oracle Functionality
-app.post('/api/quantum/oracle-tarot', (req, res) => {
-    const { username, physicsObservationSeed, paymentType } = req.body;
-    const payment = verifyAndProcessEcosystemDeduction(username, 25, 5, paymentType);
-    if (payment.error) return res.status(400).json({ error: payment.error });
-
-    const systemWaveforms = ["The Magician (Superposition Active)", "The Tower (State Collapse)", "The Star (Entangled Probability High)"];
-    const selectedOutcome = systemWaveforms[Math.floor(Math.random() * systemWaveforms.length)];
-
-    res.json({
-        success: true,
-        oracleWavefunctionReading: selectedOutcome,
-        physicalInterpretation: `Your structural variable (${physicsObservationSeed || 'Mesh-Core'}) has successfully collapsed your probability spectrum into an optimal deployment track. Proceed with full force.`,
-        payDetails: payment
-    });
-});
-
-// Utility 7: Quantum AI Office Operations Module
-app.post('/api/quantum/office-ops', (req, res) => {
-    const { username, spreadsheetAction, paymentType } = req.body;
-    const payment = verifyAndProcessEcosystemDeduction(username, 10, 2, paymentType);
-    if (payment.error) return res.status(400).json({ error: payment.error });
-
-    res.json({ success: true, ledgerAuditStatus: "BALANCED", rowsProcessed: 2540, actionExecuted: spreadsheetAction, payDetails: payment });
-});
-
-// Utility 8: Quantum AI Signatories Generator Machine
-app.post('/api/quantum/signatory-generate', (req, res) => {
-    const { username, documentTitle, paymentType } = req.body;
-    const payment = verifyAndProcessEcosystemDeduction(username, 15, 3, paymentType);
-    if (payment.error) return res.status(400).json({ error: payment.error });
-
-    const keyHash = "SIG-MIST-" + crypto.createHash('sha256').update(`${username}-${documentTitle}`).digest('hex').substring(0, 12).toUpperCase();
-    res.json({ success: true, signatureHash: keyHash, targetDeed: documentTitle, payDetails: payment });
-});
-
-// Utility 9: Quantum AI Logo, Symbol, & Colour Generator Machine
-app.post('/api/quantum/branding-compiler', (req, res) => {
-    const { username, brandSeed, paymentType } = req.body;
-    const payment = verifyAndProcessEcosystemDeduction(username, 5, 1, paymentType);
-    if (payment.error) return res.status(400).json({ error: payment.error });
-
-    const matrixHash = crypto.createHash('md5').update(brandSeed || "hub-seed").digest('hex');
-    const generatedColor = "#" + matrixHash.substring(0, 6);
-    const generatedSymbol = `💠 [Lattice-${matrixHash.substring(6, 10).toUpperCase()}]`;
-    const generatedLogoUri = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="${generatedColor}"/><text x="50%" y="55%" font-family="monospace" font-size="12" fill="white" text-anchor="middle">${matrixHash.substring(0,4).toUpperCase()}</text></svg>`;
-
-    res.json({ success: true, hexColor: generatedColor, symbol: generatedSymbol, rawLogoSvg: generatedLogoUri, payDetails: payment });
-});
-
-// =======================================================
-// 🎮 HUB NATIVE ARCADE MODULE (49 COMPLIANT GAMES)
-// =======================================================
-app.post('/api/arcade/session-start', (req, res) => {
-    const { username, gameId } = req.body;
-    if(!userHumtBalances[username]) userHumtBalances[username] = 0.00;
-    res.json({
-        success: true,
-        gameTitle: `Tunapac Hub Arcade Game Variant #${gameId}`,
-        allocatedAssetLayer: "HUMT-NATIVE",
-        sessionToken: "SESSION-" + crypto.randomBytes(4).toString('hex').toUpperCase()
-    });
-});
-
-// =======================================================
-// 🏛️ QUANTUM NFT MINTING FORGE & MARKETPLACE ORDERBOOK
-// =======================================================
-app.post('/api/marketplace/mint', (req, res) => {
-    const { username, assetName, paymentType } = req.body;
-    const payment = verifyAndProcessEcosystemDeduction(username, 50, 10, paymentType);
-    if (payment.error) return res.status(400).json({ error: payment.error });
-
-    const rarities = ["Common Shard", "Rare Entangled Layer", "Superposition Legend"];
-    const randomlySelectedRarity = rarities[Math.floor(Math.random() * rarities.length)];
-    const tokenUuid = "HUMT-NFT-" + crypto.randomBytes(3).toString('hex').toUpperCase();
-
-    const freshlyMintedNft = { id: tokenUuid, name: assetName, rarity: randomlySelectedRarity, owner: username };
-    nftRegistry.push(freshlyMintedNft);
-
-    res.json({ success: true, tokenId: tokenUuid, nft: freshlyMintedNft, payDetails: payment });
-});
-
-// =======================================================
-// ⚖️ VARIABLE-WEIGHT CONGO CONSENSUS VOTING DECK
-// =======================================================
-app.post('/api/governance/vote', (req, res) => {
-    const { username, proposalId, voteSelection, voteWeight } = req.body;
-    const balance = userHumtBalances[username] || 0;
-    const exactWeight = parseFloat(voteWeight) || 50;
-
-    if (balance < exactWeight) return res.status(400).json({ error: "Inadequate liquid $HUMT asset weight balance to execute voting pledge." });
-    const proposal = activeProposals[proposalId];
-    if (!proposal) return res.status(404).json({ error: "Target proposal vector not found in system registers." });
-    if (proposal.votedUsers[username]) return res.status(400).json({ error: "Node signature mismatch: footprints indicate duplicate vote action for this cycle." });
-
-    userHumtBalances[username] -= exactWeight;
-    proposal.votedUsers[username] = exactWeight;
+// Join a new peer node into your local cluster matrix
+app.post('/api/p2p/connect-node', (req, res) => {
+    const { peerUrl } = req.body;
+    if (!peerUrl) return res.status(400).json({ error: "Missing peerUrl" });
     
-    if (voteSelection === 'YES') proposal.yesVotes += exactWeight;
-    else if (voteSelection === 'NO') proposal.noVotes += exactWeight;
-
-    res.json({ success: true, yes: proposal.yesVotes, no: proposal.noVotes, newBalance: userHumtBalances[username] });
+    if (!peerNodes.includes(peerUrl)) {
+        peerNodes.push(peerUrl);
+    }
+    return res.json({ success: true, activePeers: peerNodes });
 });
 
-app.get('/api/governance/proposals', (req, res) => { res.json({ proposals: activeProposals }); });
+// ====================================================
+//  MODULE B: BLOCKCHAIN GLOBAL RPC INTERACTION LAYER
+// ====================================================
 
-// =======================================================
-// 🗺️ METAVERSE SPATIAL LAND COLLATERAL VAULT (65% LTV)
-// =======================================================
-app.post('/api/metaverse/land-collateral', (req, res) => {
-    const { plotReferenceCode, assessedValuationAmount } = req.body;
-    const calculatedLtvLimit = parseFloat(assessedValuationAmount || 0) * 0.65;
+// Fetch live block data or state from global decentralized mainnets
+app.get('/api/web3/global-block', async (req, res) => {
+    try {
+        const rpcPayload = {
+            jsonrpc: "2.0",
+            method: "eth_blockNumber",
+            params: [],
+            id: 1
+        };
+        
+        const response = await axios.post(WEB3_RPC_PROVIDER, rpcPayload);
+        const hexBlock = response.data.result;
+        const decimalBlock = parseInt(hexBlock, 16);
+        
+        return res.json({
+            success: true,
+            networkProvider: "Ankr Web3 RPC Gateway",
+            currentGlobalBlock: decimalBlock,
+            hex: hexBlock
+        });
+    } catch (error) {
+        return res.status(500).json({ 
+            error: "Failed to pull live Web3 state",
+            details: error.message 
+        });
+    }
+});
+
+// ====================================================
+//  CORE ACCOUNT & SOVEREIGN DNS ENGINE
+// ====================================================
+
+function generateCustomHumaWallet() {
+    const privateKey = crypto.randomBytes(32).toString('hex');
+    const hash = crypto.createHash('sha256').update(privateKey).digest('hex');
+    const walletAddress = "Huma" + hash.substring(0, 30);
+    return {
+        privateKey: `pv_key_${privateKey.substring(0, 24)}`,
+        walletAddress: walletAddress
+    };
+}
+
+function isValidHumaAddress(address) {
+    if (!address || typeof address !== 'string') return false;
+    return address.startsWith('Huma') && address.length >= 15;
+}
+
+app.post('/api/dns/register', async (req, res) => {
+    try {
+        let { domain, walletAddress } = req.body;
+        if (!domain || !walletAddress) {
+            return res.status(400).json({ error: "Missing fields" });
+        }
+        domain = domain.trim().toLowerCase();
+        if (!domain.endsWith('.huma')) domain = domain + '.huma';
+        
+        if (!isValidHumaAddress(walletAddress)) {
+            return res.status(400).json({ error: "Invalid address prefix" });
+        }
+        
+        web3DnsRegistry[domain] = walletAddress;
+
+        // P2P Action: Instantly broadcast this registration across the network
+        await broadcastToP2PSwarm('/api/p2p/sync-dns', { domain, walletAddress });
+
+        return res.json({ success: true, domain, resolvedTo: walletAddress });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/dns/resolve/:domain', (req, res) => {
+    let domain = req.params.domain.trim().toLowerCase();
+    if (!domain.endsWith('.huma')) domain = domain + '.huma';
+    const address = web3DnsRegistry[domain];
+    if (!address) return res.status(404).json({ error: "Domain not found" });
+    return res.json({ success: true, domain, address });
+});
+
+app.post('/api/wallet/generate', (req, res) => {
+    try {
+        const { username } = req.body;
+        if (!username) return res.status(400).json({ error: "Username required" });
+        const credentials = generateCustomHumaWallet();
+        walletToUserMap[credentials.walletAddress] = username;
+        userHumtBalances[credentials.walletAddress] = 0;
+        return res.json({
+            success: true,
+            username,
+            address: credentials.walletAddress,
+            privateKey: credentials.privateKey
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/ecosystem/status', (req, res) => {
     res.json({
-        success: true,
-        plotStamped: plotReferenceCode,
-        borrowLimit: calculatedLtvLimit,
-        vaultUuid: "VAULT-LTV-" + crypto.randomBytes(3).toString('hex').toUpperCase(),
-        xrStreamingHook: "ENABLED_STREAM_3D"
+        status: "active",
+        tdlProtocol: ".Huma Web3 DNS Swarm Active",
+        totalSupplyHUMT: FIXED_SUPPLY_HUMT,
+        connectedP2PPeers: peerNodes.length,
+        totalRegisteredDomains: Object.keys(web3DnsRegistry).length
     });
 });
 
 app.listen(PORT, () => {
-    console.log(`=======================================================`);
-    console.log(` 👑 TUNAPAC HUMANLEDGER HUB RUNNING LIVE ON PORT 3000 `);
-    console.log(`=======================================================`);
-}}
+    console.log(`===============================================`);
+    console.log(`🚀 Tunapac Humanledger Global Web3 Engine`);
+    console.log(`📡 Port: ${PORT} | Active Network Swarm Bridges`);
+    console.log(`🔗 Connected to External Web3 RPC Networks`);
+    console.log(`===============================================`);
+});

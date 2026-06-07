@@ -2,3 +2,4 @@
 # Edit at your own risk.
 # <hostname>	<port>	<incl. subdomains>	<created>	<max-age>
 bin.equinox.io	0	1	1778774910	31536000
+github.com	0	1	1779583325	31536000

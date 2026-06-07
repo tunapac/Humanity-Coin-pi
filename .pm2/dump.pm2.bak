@@ -1,0 +1,471 @@
+[
+  {
+    "name": "huma-tunnel",
+    "filter_env": [],
+    "namespace": "default",
+    "env": {
+      "SHELL": "/bin/bash",
+      "PWD": "/home/userland",
+      "LOGNAME": "userland",
+      "HOME": "/home/userland",
+      "SSH_CONNECTION": "127.0.0.1 42778 127.0.0.1 2022",
+      "TERM": "xterm-256color",
+      "USER": "userland",
+      "SHLVL": "1",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "SSH_CLIENT": "127.0.0.1 42778 2022",
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+      "SSH_TTY": "/dev/pts/28",
+      "_": "/usr/local/bin/pm2",
+      "PM2_USAGE": "CLI",
+      "PM2_HOME": "/home/userland/.pm2",
+      "huma-tunnel": {},
+      "unique_id": "ef0b8a25-19cc-4d29-8a6c-cbf623864df9"
+    },
+    "merge_logs": true,
+    "vizion": true,
+    "autostart": true,
+    "autorestart": true,
+    "watch": false,
+    "instance_var": "NODE_APP_INSTANCE",
+    "pmx": true,
+    "automation": true,
+    "treekill": true,
+    "username": "userland",
+    "windowsHide": true,
+    "kill_retry_time": 100,
+    "node_args": [],
+    "pm_exec_path": "/home/userland/huma-tunnel.js",
+    "pm_cwd": "/home/userland",
+    "exec_interpreter": "node",
+    "exec_mode": "fork_mode",
+    "pm_out_log_path": "/home/userland/.pm2/logs/huma-tunnel-out.log",
+    "pm_err_log_path": "/home/userland/.pm2/logs/huma-tunnel-error.log",
+    "pm_pid_path": "/home/userland/.pm2/pids/huma-tunnel-0.pid",
+    "km_link": false,
+    "vizion_running": false,
+    "NODE_APP_INSTANCE": 0,
+    "SHELL": "/bin/bash",
+    "PWD": "/home/userland",
+    "LOGNAME": "userland",
+    "HOME": "/home/userland",
+    "SSH_CONNECTION": "127.0.0.1 42778 127.0.0.1 2022",
+    "TERM": "xterm-256color",
+    "USER": "userland",
+    "SHLVL": "1",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "SSH_CLIENT": "127.0.0.1 42778 2022",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+    "SSH_TTY": "/dev/pts/28",
+    "_": "/usr/local/bin/pm2",
+    "PM2_USAGE": "CLI",
+    "PM2_HOME": "/home/userland/.pm2",
+    "unique_id": "ef0b8a25-19cc-4d29-8a6c-cbf623864df9",
+    "status": "online",
+    "pm_uptime": 1780296378408,
+    "axm_actions": [
+      {
+        "action_name": "km:heapdump",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:cpu:profiling:start",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:cpu:profiling:stop",
+        "action_type": "internal",
+        "arity": 1
+      },
+      {
+        "action_name": "km:heap:sampling:start",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:heap:sampling:stop",
+        "action_type": "internal",
+        "arity": 1
+      }
+    ],
+    "axm_monitor": {
+      "Heap Size": {
+        "historic": true,
+        "unit": "MiB",
+        "type": "internal/v8/heap/total",
+        "value": "8.09"
+      },
+      "Heap Usage": {
+        "historic": true,
+        "unit": "%",
+        "type": "internal/v8/heap/usage",
+        "value": 79.6
+      },
+      "Used Heap Size": {
+        "historic": true,
+        "unit": "MiB",
+        "type": "internal/v8/heap/used",
+        "value": "6.44"
+      },
+      "Active requests": {
+        "historic": true,
+        "type": "internal/libuv/requests",
+        "value": 0
+      },
+      "Active handles": {
+        "historic": true,
+        "type": "internal/libuv/handles",
+        "value": 2
+      },
+      "Event Loop Latency": {
+        "historic": true,
+        "unit": "ms",
+        "type": "internal/libuv/latency/p50",
+        "value": "0.46"
+      },
+      "Event Loop Latency p95": {
+        "historic": true,
+        "unit": "ms",
+        "type": "internal/libuv/latency/p95",
+        "value": "1.30"
+      }
+    },
+    "axm_options": {
+      "error": true,
+      "heapdump": true,
+      "feature.profiler.heapsnapshot": false,
+      "feature.profiler.heapsampling": true,
+      "feature.profiler.cpu_js": true,
+      "latency": true,
+      "catchExceptions": true,
+      "profiling": true,
+      "metrics": {
+        "v8": true,
+        "network": false,
+        "eventLoop": true,
+        "runtime": true,
+        "http": true
+      },
+      "standalone": false,
+      "tracing": {
+        "enabled": false,
+        "outbound": false
+      },
+      "module_conf": {},
+      "apm": {
+        "type": "node",
+        "version": "8.0.0"
+      },
+      "module_name": "huma-tunnel",
+      "module_version": "7.0.1"
+    },
+    "axm_dynamic": {},
+    "created_at": 1780296378408,
+    "restart_time": 0,
+    "unstable_restarts": 0,
+    "node_version": "24.14.1"
+  },
+  {
+    "name": "server",
+    "filter_env": [],
+    "namespace": "default",
+    "env": {
+      "SHELL": "/bin/bash",
+      "PWD": "/home/userland/tunapac-humanledger-hub",
+      "LOGNAME": "userland",
+      "HOME": "/home/userland",
+      "SSH_CONNECTION": "127.0.0.1 42778 127.0.0.1 2022",
+      "TERM": "xterm-256color",
+      "USER": "userland",
+      "SHLVL": "1",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "SSH_CLIENT": "127.0.0.1 42778 2022",
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+      "SSH_TTY": "/dev/pts/28",
+      "_": "/usr/local/bin/pm2",
+      "OLDPWD": "/home/userland",
+      "PM2_USAGE": "CLI",
+      "PM2_HOME": "/home/userland/.pm2",
+      "server": {},
+      "unique_id": "1530b22d-115f-4f5f-ba40-000226f22e52"
+    },
+    "merge_logs": true,
+    "vizion": true,
+    "autostart": true,
+    "autorestart": true,
+    "watch": false,
+    "instance_var": "NODE_APP_INSTANCE",
+    "pmx": true,
+    "automation": true,
+    "treekill": true,
+    "username": "userland",
+    "windowsHide": true,
+    "kill_retry_time": 100,
+    "node_args": [],
+    "pm_exec_path": "/home/userland/tunapac-humanledger-hub/server.js",
+    "pm_cwd": "/home/userland/tunapac-humanledger-hub",
+    "exec_interpreter": "node",
+    "exec_mode": "fork_mode",
+    "pm_out_log_path": "/home/userland/.pm2/logs/server-out.log",
+    "pm_err_log_path": "/home/userland/.pm2/logs/server-error.log",
+    "pm_pid_path": "/home/userland/.pm2/pids/server-1.pid",
+    "km_link": false,
+    "vizion_running": false,
+    "NODE_APP_INSTANCE": 0,
+    "SHELL": "/bin/bash",
+    "PWD": "/home/userland/tunapac-humanledger-hub",
+    "LOGNAME": "userland",
+    "HOME": "/home/userland",
+    "SSH_CONNECTION": "127.0.0.1 42778 127.0.0.1 2022",
+    "TERM": "xterm-256color",
+    "USER": "userland",
+    "SHLVL": "1",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "SSH_CLIENT": "127.0.0.1 42778 2022",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+    "SSH_TTY": "/dev/pts/28",
+    "_": "/usr/local/bin/pm2",
+    "OLDPWD": "/home/userland",
+    "PM2_USAGE": "CLI",
+    "PM2_HOME": "/home/userland/.pm2",
+    "unique_id": "1530b22d-115f-4f5f-ba40-000226f22e52",
+    "status": "online",
+    "pm_uptime": 1780296755007,
+    "axm_actions": [
+      {
+        "action_name": "km:heapdump",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:cpu:profiling:start",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:cpu:profiling:stop",
+        "action_type": "internal",
+        "arity": 1
+      },
+      {
+        "action_name": "km:heap:sampling:start",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:heap:sampling:stop",
+        "action_type": "internal",
+        "arity": 1
+      }
+    ],
+    "axm_monitor": {
+      "Heap Size": {
+        "historic": true,
+        "unit": "MiB",
+        "type": "internal/v8/heap/total",
+        "value": "12.86"
+      },
+      "Heap Usage": {
+        "historic": true,
+        "unit": "%",
+        "type": "internal/v8/heap/usage",
+        "value": 89.32
+      },
+      "Used Heap Size": {
+        "historic": true,
+        "unit": "MiB",
+        "type": "internal/v8/heap/used",
+        "value": "11.48"
+      },
+      "Active requests": {
+        "historic": true,
+        "type": "internal/libuv/requests",
+        "value": 0
+      },
+      "Active handles": {
+        "historic": true,
+        "type": "internal/libuv/handles",
+        "value": 4
+      },
+      "Event Loop Latency": {
+        "historic": true,
+        "unit": "ms",
+        "type": "internal/libuv/latency/p50",
+        "value": "0.56"
+      },
+      "Event Loop Latency p95": {
+        "historic": true,
+        "unit": "ms",
+        "type": "internal/libuv/latency/p95",
+        "value": "1.62"
+      }
+    },
+    "axm_options": {
+      "error": true,
+      "heapdump": true,
+      "feature.profiler.heapsnapshot": false,
+      "feature.profiler.heapsampling": true,
+      "feature.profiler.cpu_js": true,
+      "latency": true,
+      "catchExceptions": true,
+      "profiling": true,
+      "metrics": {
+        "v8": true,
+        "network": false,
+        "eventLoop": true,
+        "runtime": true,
+        "http": true
+      },
+      "standalone": false,
+      "tracing": {
+        "enabled": false,
+        "outbound": false
+      },
+      "module_conf": {},
+      "apm": {
+        "type": "node",
+        "version": "8.0.0"
+      },
+      "module_name": "server",
+      "module_version": "7.0.1"
+    },
+    "axm_dynamic": {},
+    "created_at": 1780296755007,
+    "restart_time": 0,
+    "unstable_restarts": 0,
+    "version": "1.0.0",
+    "node_version": "24.14.1"
+  },
+  {
+    "name": "humatelcos",
+    "filter_env": [],
+    "namespace": "default",
+    "env": {
+      "SHELL": "/bin/bash",
+      "PWD": "/home/userland/tunapac-humanledger-hub",
+      "LOGNAME": "userland",
+      "HOME": "/home/userland",
+      "SSH_CONNECTION": "127.0.0.1 42778 127.0.0.1 2022",
+      "TERM": "xterm-256color",
+      "USER": "userland",
+      "SHLVL": "1",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "SSH_CLIENT": "127.0.0.1 42778 2022",
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+      "SSH_TTY": "/dev/pts/28",
+      "_": "/usr/local/bin/pm2",
+      "OLDPWD": "/home/userland",
+      "PM2_USAGE": "CLI",
+      "PM2_HOME": "/home/userland/.pm2",
+      "humatelcos": {},
+      "unique_id": "95126588-6e78-42ca-87d2-ceaaeee48b86"
+    },
+    "merge_logs": true,
+    "vizion": true,
+    "autostart": true,
+    "autorestart": true,
+    "watch": false,
+    "instance_var": "NODE_APP_INSTANCE",
+    "pmx": true,
+    "automation": true,
+    "treekill": true,
+    "username": "userland",
+    "windowsHide": true,
+    "kill_retry_time": 100,
+    "node_args": [],
+    "pm_exec_path": "/home/userland/tunapac-humanledger-hub/humatelcos.js",
+    "pm_cwd": "/home/userland/tunapac-humanledger-hub",
+    "exec_interpreter": "node",
+    "exec_mode": "fork_mode",
+    "pm_out_log_path": "/home/userland/.pm2/logs/humatelcos-out.log",
+    "pm_err_log_path": "/home/userland/.pm2/logs/humatelcos-error.log",
+    "pm_pid_path": "/home/userland/.pm2/pids/humatelcos-2.pid",
+    "km_link": false,
+    "vizion_running": false,
+    "NODE_APP_INSTANCE": 0,
+    "SHELL": "/bin/bash",
+    "PWD": "/home/userland/tunapac-humanledger-hub",
+    "LOGNAME": "userland",
+    "HOME": "/home/userland",
+    "SSH_CONNECTION": "127.0.0.1 42778 127.0.0.1 2022",
+    "TERM": "xterm-256color",
+    "USER": "userland",
+    "SHLVL": "1",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "SSH_CLIENT": "127.0.0.1 42778 2022",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+    "SSH_TTY": "/dev/pts/28",
+    "_": "/usr/local/bin/pm2",
+    "OLDPWD": "/home/userland",
+    "PM2_USAGE": "CLI",
+    "PM2_HOME": "/home/userland/.pm2",
+    "unique_id": "95126588-6e78-42ca-87d2-ceaaeee48b86",
+    "status": "online",
+    "pm_uptime": 1780297256659,
+    "axm_actions": [
+      {
+        "action_name": "km:heapdump",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:cpu:profiling:start",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:cpu:profiling:stop",
+        "action_type": "internal",
+        "arity": 1
+      },
+      {
+        "action_name": "km:heap:sampling:start",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:heap:sampling:stop",
+        "action_type": "internal",
+        "arity": 1
+      }
+    ],
+    "axm_monitor": {},
+    "axm_options": {
+      "error": true,
+      "heapdump": true,
+      "feature.profiler.heapsnapshot": false,
+      "feature.profiler.heapsampling": true,
+      "feature.profiler.cpu_js": true,
+      "latency": true,
+      "catchExceptions": true,
+      "profiling": true,
+      "metrics": {
+        "v8": true,
+        "network": false,
+        "eventLoop": true,
+        "runtime": true,
+        "http": true
+      },
+      "standalone": false,
+      "tracing": {
+        "enabled": false,
+        "outbound": false
+      },
+      "module_conf": {},
+      "apm": {
+        "type": "node",
+        "version": "8.0.0"
+      },
+      "module_name": "humatelcos",
+      "module_version": "7.0.1"
+    },
+    "axm_dynamic": {},
+    "created_at": 1780297256659,
+    "restart_time": 0,
+    "unstable_restarts": 0,
+    "version": "1.0.0",
+    "node_version": "24.14.1"
+  }
+]

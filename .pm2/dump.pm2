@@ -1,0 +1,129 @@
+[
+  {
+    "name": "server",
+    "filter_env": [],
+    "namespace": "default",
+    "env": {
+      "SHELL": "/bin/bash",
+      "PWD": "/home/userland",
+      "LOGNAME": "userland",
+      "HOME": "/home/userland",
+      "SSH_CONNECTION": "127.0.0.1 38696 127.0.0.1 2022",
+      "TERM": "xterm-256color",
+      "USER": "userland",
+      "SHLVL": "1",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "SSH_CLIENT": "127.0.0.1 38696 2022",
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+      "SSH_TTY": "/dev/pts/28",
+      "_": "/usr/local/bin/pm2",
+      "PM2_USAGE": "CLI",
+      "PM2_HOME": "/home/userland/.pm2",
+      "server": {},
+      "unique_id": "abbdd40c-afa8-4421-b9a0-61967b4fed2a"
+    },
+    "merge_logs": true,
+    "vizion": true,
+    "autostart": true,
+    "autorestart": true,
+    "watch": false,
+    "instance_var": "NODE_APP_INSTANCE",
+    "pmx": true,
+    "automation": true,
+    "treekill": true,
+    "username": "userland",
+    "windowsHide": true,
+    "kill_retry_time": 100,
+    "node_args": [],
+    "pm_exec_path": "/home/userland/server.cjs",
+    "pm_cwd": "/home/userland",
+    "exec_interpreter": "/usr/local/bin/node",
+    "exec_mode": "fork_mode",
+    "pm_out_log_path": "/home/userland/.pm2/logs/server-out.log",
+    "pm_err_log_path": "/home/userland/.pm2/logs/server-error.log",
+    "pm_pid_path": "/home/userland/.pm2/pids/server-0.pid",
+    "km_link": false,
+    "vizion_running": false,
+    "NODE_APP_INSTANCE": 0,
+    "SHELL": "/bin/bash",
+    "PWD": "/home/userland",
+    "LOGNAME": "userland",
+    "HOME": "/home/userland",
+    "SSH_CONNECTION": "127.0.0.1 38696 127.0.0.1 2022",
+    "TERM": "xterm-256color",
+    "USER": "userland",
+    "SHLVL": "1",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "SSH_CLIENT": "127.0.0.1 38696 2022",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+    "SSH_TTY": "/dev/pts/28",
+    "_": "/usr/local/bin/pm2",
+    "PM2_USAGE": "CLI",
+    "PM2_HOME": "/home/userland/.pm2",
+    "unique_id": "abbdd40c-afa8-4421-b9a0-61967b4fed2a",
+    "status": "online",
+    "pm_uptime": 1780370248412,
+    "axm_actions": [
+      {
+        "action_name": "km:heapdump",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:cpu:profiling:start",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:cpu:profiling:stop",
+        "action_type": "internal",
+        "arity": 1
+      },
+      {
+        "action_name": "km:heap:sampling:start",
+        "action_type": "internal",
+        "arity": 2
+      },
+      {
+        "action_name": "km:heap:sampling:stop",
+        "action_type": "internal",
+        "arity": 1
+      }
+    ],
+    "axm_monitor": {},
+    "axm_options": {
+      "error": true,
+      "heapdump": true,
+      "feature.profiler.heapsnapshot": false,
+      "feature.profiler.heapsampling": true,
+      "feature.profiler.cpu_js": true,
+      "latency": true,
+      "catchExceptions": true,
+      "profiling": true,
+      "metrics": {
+        "v8": true,
+        "network": false,
+        "eventLoop": true,
+        "runtime": true,
+        "http": true
+      },
+      "standalone": false,
+      "tracing": {
+        "enabled": false,
+        "outbound": false
+      },
+      "module_conf": {},
+      "apm": {
+        "type": "node",
+        "version": "8.0.0"
+      },
+      "module_name": "server",
+      "module_version": "7.0.1"
+    },
+    "axm_dynamic": {},
+    "created_at": 1780370248412,
+    "restart_time": 0,
+    "unstable_restarts": 0,
+    "node_version": "24.14.1"
+  }
+]

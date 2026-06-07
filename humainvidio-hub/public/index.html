@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUMAINVIDIO AI - The Ultimate Creator Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght=400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+    <script>Pi.init({ version: "2.0" });</script>
+
+    <style>
+        /* =====================================================================
+           🎨 STYLING DEFINITIONS: ROYAL GOLD & DARK AMBER HIGH-TECH COSMOS
+           ===================================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Urbanist', sans-serif; }
+        body { background-color: #050510; color: #ffffff; padding: 15px; min-height: 100vh; }
+        .app-container { max-width: 900px; margin: 0 auto; background: #0b0b1e; border-radius: 14px; border: 1px solid rgba(240, 192, 64, 0.25); overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+
+        /* 🔥 MASTER HEADING DASHBOARD BANNER */
+        .master-header { background: linear-gradient(135deg, #15152d 0%, #0f0f26 100%); padding: 25px; border-bottom: 2px solid #f0c040; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .brand-zone h1 { font-size: 28px; color: #ffffff; font-weight: 700; letter-spacing: 0.5px; }
+        .brand-zone h1 span { color: #f0c040; }
+        .brand-zone p { font-size: 13px; color: #daffde; opacity: 0.8; margin-top: 2px; }
+        .wallet-profile-widget { background: rgba(5, 5, 16, 0.6); border: 1px dashed rgba(240, 192, 64, 0.4); padding: 10px 18px; border-radius: 8px; text-align: right; }
+        .pioneer-tag { font-size: 14px; font-weight: 700; color: #f0c040; display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
+        .token-balance { font-size: 16px; font-weight: 500; color: #ffffff; margin-top: 4px; }
+        .token-balance strong { color: #2ecc71; }
+
+        /* 💎 SUBSCRIPTION CONVERSION MATRIX GRID (5:1 RATIO CALIBRATED) */
+        .subscription-section { padding: 20px; background: rgba(240, 192, 64, 0.03); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .sub-title { font-size: 16px; font-weight: 700; color: #f0c040; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+        .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .tier-card { background: #13132a; border: 1px solid #222; border-radius: 8px; padding: 15px; text-align: center; position: relative; cursor: pointer; transition: transform 0.2s; }
+        .tier-card:hover { transform: translateY(-2px); border-color: #f0c040; }
+        .tier-card.selected { border-color: #f0c040; background: rgba(240, 192, 64, 0.05); }
+        .tier-card h3 { font-size: 16px; color: #ffffff; margin-bottom: 5px; }
+        .tier-card .humt-amount { font-size: 22px; font-weight: 700; color: #f0c040; margin: 8px 0 2px; }
+        .tier-card .pi-cost { font-size: 13px; font-weight: 700; color: #daffde; opacity: 0.9; }
+        .tier-card .perks { font-size: 11px; color: #aaa; margin-top: 8px; line-height: 1.3; }
+
+        /* 💻 CORE WORKSPACE LAYOUT */
+        .workspace { padding: 25px; }
+        .tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .tab-btn { flex: 1; padding: 12px; background: #13132a; color: #fff; border: 1px solid #222; cursor: pointer; border-radius: 6px; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .tab-btn.active { background: #f0c040; color: #050510; border-color: #f0c040; }
+        
+        /* 💡 SCRIPT IDEATION MARBLE */
+        .idea-matrix { background: #151535; border: 1px dashed rgba(240, 192, 64, 0.4); padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .matrix-title { font-size: 13px; font-weight: 700; color: #f0c040; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .idea-pill { display: inline-block; background: #0b0b1e; font-size: 12px; padding: 6px 12px; border-radius: 20px; cursor: pointer; margin: 4px 4px 4px 0; border: 1px solid #333; color: #daffde; transition: 0.2s; }
+        .idea-pill:hover { background: #f0c040; color: #050510; border-color: #f0c040; }
+
+        /* FORMS LAYOUT */
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; color: #f0c040; font-size: 13px; font-weight: 700; text-transform: uppercase; }
+        input, textarea, select { width: 100%; padding: 12px; background: #050510; color: #fff; border: 1px solid #222; border-radius: 6px; font-size: 15px; box-sizing: border-box; }
+        input:focus, textarea:focus, select:focus { border-color: #f0c040; outline: none; }
+        
+        /* ACTIONS & PIPELINES */
+        button.action-btn { background: #f0c040; color: #050510; font-size: 16px; font-weight: 700; padding: 14px; border: none; width: 100%; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; box-shadow: 0 4px 15px rgba(240, 192, 64, 0.2); }
+        button.action-btn:disabled { background: #444; color: #888; cursor: not-allowed; box-shadow: none; }
+        
+        .download-zone { margin-top: 25px; display: none; text-align: center; background: rgba(46, 204, 113, 0.1); border: 1px solid #2ecc71; padding: 20px; border-radius: 8px; }
+        .dl-btn { display: inline-block; background: #2ecc71; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 700; margin-top: 12px; box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3); }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    
+    <header class="master-header">
+        <div class="brand-zone">
+            <h1>HUMAINVIDIO <span>AI</span></h1>
+            <p>Multi-Modal Cinematic Creation Hub • Humanity Chain Ecosystem</p>
+        </div>
+        <div class="wallet-profile-widget">
+            <div class="pioneer-tag"><i class="fa-solid fa-user-shield"></i> <span id="pioneer-username">Pioneer Node</span></div>
+            <div class="token-balance">Balance: <strong id="humt-balance">0</strong> <span>HUMT</span></div>
+        </div>
+    </header>
+
+    <section class="subscription-section">
+        <div class="sub-title"><i class="fa-solid fa-gem"></i> Choose Subscription Plan (Settled in Pi Coin)</div>
+        <div class="tier-grid">
+            <div class="tier-card" id="tier-bronze" onclick="selectTier('bronze', 10, 50)">
+                <h3>🥉 Bronze Package</h3>
+                <div class="humt-amount">50 HUMT</div>
+                <div class="pi-cost">Cost: 10 Pi</div>
+                <div class="perks">720p Rendering Mode<br>2 Full Movie Scene Renders</div>
+            </div>
+            <div class="tier-card" id="tier-silver" onclick="selectTier('silver', 50, 250)">
+                <h3>🥈 Silver Package</h3>
+                <div class="humt-amount">250 HUMT</div>
+                <div class="pi-cost">Cost: 50 Pi</div>
+                <div class="perks">1080p High-Def Mode<br>12 Multi-Modal Generation Cycles</div>
+            </div>
+            <div class="tier-card" id="tier-gold" onclick="selectTier('gold', 100, 500)">
+                <h3>🥇 Gold Campaign</h3>
+                <div class="humt-amount">500 HUMT</div>
+                <div class="pi-cost">Cost: 100 Pi</div>
+                <div class="perks">4K Master Rendering Mode<br>25 High-Impact Film/Ad Sequences</div>
+            </div>
+        </div>
+        <button class="action-btn" id="btn-subscribe" onclick="initiatePiSubscriptionPayment()" style="background: #2ecc71; color: #fff; margin-top: 15px; font-size: 14px; padding: 10px;">
+            <i class="fa-solid fa-wallet"></i> DEPOSIT PI COIN & CONVERT TO HUMT SUBSCRIBER CREDITS
+        </button>
+    </section>
+
+    <main class="workspace">
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-t2v" onclick="switchWorkspaceTab('t2v')"><i class="fa-solid fa-film"></i> Text to Film</button>
+            <button class="tab-btn" id="tab-ad" onclick="switchWorkspaceTab('ad')"><i class="fa-solid fa-rectangle-ad"></i> Brand Promotion</button>
+            <button class="tab-btn" id="tab-i2v" onclick="switchWorkspaceTab('i2v')"><i class="fa-solid fa-image"></i> Image to Video</button>
+        </div>
+
+        <div class="idea-matrix">
+            <div class="matrix-title"><i class="fa-solid fa-lightbulb"></i> Need Inspiration? Load an AI Plot Matrix Idea:</div>
+            <span class="idea-pill" onclick="injectBrainIdea('film', 'Sci-Fi Action', 'A lone terminal systems architect detects an extra-terrestrial communication code running silently inside a human ledger blockchain node.')">🚀 Sci-Fi Ledger</span>
+            <span class="idea-pill" onclick="injectBrainIdea('film', 'Cyberpunk', 'A data investigator uncovers an illegal identity scanning operation inside a massive mega-city corporate bunker.')">⚖️ Data Conspiracy</span>
+            <span class="idea-pill" onclick="injectBrainIdea('ad', 'Luxury Thread', 'Bespoke corporate native clothing lines crafted with deep blue velvet and gold thread patterns.')">👔 Premium Threads Ad</span>
+        </div>
+
+        <div id="form-block-t2v">
+            <div class="form-group">
+                <label>🎬 Film Project Title</label>
+                <input type="text" id="filmTitle" value="Humanledger Core Chronicles">
+            </div>
+            <div class="form-group">
+                <label>📝 Dramatic Action Scene Prompt</label>
+                <textarea id="filmDesc" rows="3">A network developer checks a sovereign terminal dashboard in a dimly lit server array under an amber golden glow.</textarea>
+            </div>
+            <div class="form-group">
+                <label>🎨 Mood Color Grade</label>
+                <input type="text" id="filmColor" value="Cyberpunk Golden Amber Gradient">
+            </div>
+        </div>
+
+        <div id="form-block-ad" style="display:none;">
+            <div class="form-group">
+                <label>🏢 Corporate / Brand Name</label>
+                <input type="text" id="adCompany" value="Tunapac Fabrics Hub">
+            </div>
+            <div class="form-group">
+                <label>🏷️ Product Segment Description</label>
+                <textarea id="adProduct" rows="3">Premium tailored apparel corporate suits, customized embroidery and native structural designs.</textarea>
+            </div>
+            <div class="form-group">
+                <label>🎨 Corporate Brand Accent Color</label>
+                <input type="text" id="adColors" value="Velvet Navy Blue and Deep Metallic Gold">
+            </div>
+        </div>
+
+        <div id="form-block-i2v" style="display:none;">
+            <div class="form-group">
+                <label>📷 Select Source Image Asset from Device Storage</label>
+                <input type="file" id="imageAssetFile" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>🌀 Fluid Vector Motion Directive</label>
+                <input type="text" id="motionPrompt" value="Cinematic slow panning motion, 4k texture fidelity, smooth transitions.">
+            </div>
+        </div>
+
+        <div id="voice-module-block">
+            <div class="form-group">
+                <label>🎤 Narrative Audio Voice Profile Overlays</label>
+                <select id="voiceProfile">
+                    <option value="en-NG-1">Nigerian English Profile Accent (Male)</option>
+                    <option value="en-NG-2">Nigerian English Profile Accent (Female)</option>
+                    <option value="en-US-1">Professional Corporate Explainer Voice (Male)</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="action-btn" id="btn-master-generate" onclick="executeAIGenerationPipeline()">
+            <i class="fa-solid fa-gears"></i> RUN MULTI-MODAL PIPELINE (COSTS 20 HUMT)
+        </button>
+
+        <div class="download-zone" id="dlContainerBox">
+            <p style="color: #2ecc71; font-weight: bold;"><i class="fa-solid fa-circle-check"></i> PIPELINE COMPILATION CONCLUDED STABLY!</p>
+            <p style="font-size: 13px; color: #aaa; margin-top: 4px;">The binary file stream attachment is targeted directly at your storage system folder matrix.</p>
+            <a href="#" class="dl-btn" id="hardwareDownloadTrigger"><i class="fa-solid fa-file-arrow-down"></i> SAVE DIRECTLY TO DEVICE LOCAL MEMORY</a>
+        </div>
+
+    </main>
+</div>
+
+<script>
+    let selectedActiveTab = 't2v';
+    let targetSelectedPlan = null;
+    let localHumtBalance = 0;
+    
+    // Deployed Ubuntu Node.js endpoint URL location proxy (PRE-SET TO LIVE TUNNEL)
+    const DEPLOYED_UBUNTU_NODE_SERVER = "https://lazy-deforest-armadillo.ngrok-free.dev"; 
+
+    // Initialize environment verification triggers
+    try {
+        Pi.authenticate(['username'], onPiAuthSuccess, onPiAuthFailure);
+    } catch(e) {
+        console.log("Running outside native sandbox wrapper environment.");
+    }
+
+    function onPiAuthSuccess(user) {
+        document.getElementById('pioneer-username').innerText = user.username;
+        console.log(`Pioneer Securely Synced: ${user.username}`);
+    }
+    function onPiAuthFailure(err) {
+        console.error("Handshake rejected:", err);
+    }
+
+    function selectTier(tierId, piPrice, humtReward) {
+        document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+        document.getElementById(`tier-${tierId}`).classList.add('selected');
+        targetSelectedPlan = { id: tierId, price: piPrice, tokens: humtReward };
+    }
+
+    /* =====================================================================
+       💎 ON-CHAIN CHECKOUT PAYMENT SUBSCRIPTION PIPELINE
+       ===================================================================== */
+    function initiatePiSubscriptionPayment() {
+        if (!targetSelectedPlan) {
+            alert("Please pick a subscription plan tier box above first!");
+            return;
+        }
+
+        console.log(`Opening payment gateway via Pi SDK for: ${targetSelectedPlan.price} Pi`);
+        
+        try {
+            Pi.createPayment({
+                amount: targetSelectedPlan.price,
+                memo: `Purchase of ${targetSelectedPlan.tokens} HUMT Creator Subscription Credits`,
+                metadata: { tier: targetSelectedPlan.id, tokenAllocation: targetSelectedPlan.tokens }
+            }, {
+                onReadyForServerApproval: function(paymentId) {
+                    console.log("Step 1 Passed: Requesting server validation...", paymentId);
+                    fetch(`${DEPLOYED_UBUNTU_NODE_SERVER}/api/pi-approve`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ paymentId: paymentId })
+                    });
+                },
+                onReadyForServerCompletion: function(paymentId, txid) {
+                    console.log("Step 2 Passed: Completing sequence transfer on ledger...", txid);
+                    fetch(`${DEPLOYED_UBUNTU_NODE_SERVER}/api/pi-complete`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ paymentId: paymentId, txid: txid })
+                    }).then(res => res.json()).then(data => {
+                        if(data.success) {
+                            localHumtBalance += targetSelectedPlan.tokens;
+                            document.getElementById('humt-balance').innerText = localHumtBalance.toLocaleString();
+                            alert(`🎉 Payment settled on Pi Mainnet! ${targetSelectedPlan.tokens} HUMT has been successfully credited to your profile balance.`);
+                        }
+                    });
+                },
+                onCancel: function(paymentId) { console.log("Transaction dismissed by user interface."); },
+                onError: function(error, paymentId) { console.error("Pi Payment Error occurred:", error); }
+            });
+        } catch (sdkError) {
+            // Simulated validation fallback layer for testing in the Pi Studio Sandbox
+            console.log("Simulation fall-back layer executed.");
+            localHumtBalance += targetSelectedPlan.tokens;
+            document.getElementById('humt-balance').innerText = localHumtBalance.toLocaleString();
+            alert(`[Sandbox Testing Mode Only]\n\nSuccessfully simulated payment of ${targetSelectedPlan.price} Pi. Added ${targetSelectedPlan.tokens} HUMT to user portfolio.`);
+        }
+    }
+
+    function switchWorkspaceTab(targetTab) {
+        selectedActiveTab = targetTab;
+        document.getElementById('tab-t2v').classList.toggle('active', targetTab === 't2v');
+        document.getElementById('tab-ad').classList.toggle('active', targetTab === 'ad');
+        document.getElementById('tab-i2v').classList.toggle('active', targetTab === 'i2v');
+        
+        document.getElementById('form-block-t2v').style.display = targetTab === 't2v' ? 'block' : 'none';
+        document.getElementById('form-block-ad').style.display = targetTab === 'ad' ? 'block' : 'none';
+        document.getElementById('form-block-i2v').style.display = targetTab === 'i2v' ? 'block' : 'none';
+        document.getElementById('voice-module-block').style.display = targetTab === 'i2v' ? 'none' : 'block';
+    }
+
+    function injectBrainIdea(mode, title, description) {
+        if (mode === 'film') {
+            switchWorkspaceTab('t2v');
+            document.getElementById('filmTitle').value = title;
+            document.getElementById('filmDesc').value = description;
+        } else {
+            switchWorkspaceTab('ad');
+            document.getElementById('adCompany').value = title;
+            document.getElementById('adProduct').value = description;
+        }
+    }
+
+    /* =====================================================================
+       🎬 MULTI-MODAL PIPELINE COMPUTATION LOOP
+       ===================================================================== */
+    async function executeAIGenerationPipeline() {
+        if (localHumtBalance < 20) {
+            alert("Insufficient HUMT balance! Please select a subscription pack tier above and process a Pi Coin transaction check to purchase credits.");
+            return;
+        }
+
+        const container = document.getElementById('dlContainerBox');
+        const triggerBtn = document.getElementById('btn-master-generate');
+        container.style.display = 'none';
+        triggerBtn.innerText = "⏳ COMPILING DISTRIBUTED CORE ASSET CHANNELS... PLEASE STAY OPENED...";
+        triggerBtn.disabled = true;
+
+        try {
+            let fileId = "";
+
+            if (selectedActiveTab === 'i2v') {
+                const imageSelector = document.getElementById('imageAssetFile');
+                if(imageSelector.files.length === 0) {
+                    alert("Please insert a target source image file matrix first.");
+                    triggerBtn.innerText = "RUN MULTI-MODAL PIPELINE (COSTS 20 HUMT)";
+                    triggerBtn.disabled = false;
+                    return;
+                }
+                const multiPartFormData = new FormData();
+                multiPartFormData.append('sourceImage', imageSelector.files[0]);
+                multiPartFormData.append('motionPrompt', document.getElementById('motionPrompt').value);
+
+                const response = await fetch(`${DEPLOYED_UBUNTU_NODE_SERVER}/api/image-to-video`, { method: 'POST', body: multiPartFormData });
+                const data = await response.json();
+                fileId = data.fileId;
+            } else {
+                let targetNetworkUrl = `${DEPLOYED_UBUNTU_NODE_SERVER}/api/generate-scene`;
+                let payloadStructure = { voiceProfile: document.getElementById('voiceProfile').value };
+
+                if (selectedActiveTab === 't2v') {
+                    payloadStructure.title = document.getElementById('filmTitle').value;
+                    payloadStructure.sceneDescription = document.getElementById('filmDesc').value;
+                    payloadStructure.themeColor = document.getElementById
