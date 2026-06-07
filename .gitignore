@@ -1,4 +1,33 @@
+# System & Editor temporary artifacts
+.bash_history
+.lesshst
+.quantum_transactions.py.swp
+*.swp
+
+# Node dependencies and deep caches
 node_modules/
-*.log
-.env
+.npm/
+package-lock.json
+
+# Core Security Keys and Certificates
+private-key.pem
+certificate.pem
+*.pem
+
+# Live Database State Files
+*.db
 local-ledger.db
+biometrics-registry.db
+rewards-ledger.db
+signed-licenses.db
+huma-dns.json
+
+# PM2 Logs & Process Monitors
+.pm2/
+*.log
+
+# Production Logs & Process Managers
+.pm2/
+*.log
+.npm/
+node_modules/

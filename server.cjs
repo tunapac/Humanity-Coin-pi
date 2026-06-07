@@ -101,7 +101,7 @@ app.post('/api/ai/generator/assets', (req, res) => {
 });
 
 /**
- * 🎛️ AI PHYSICAL & CYBER INTERNALS: Physics, Osmosis, and Software/Hardware Auditing
+b * 🎛️ AI PHYSICAL & CYBER INTERNALS: Physics, Osmosis, and Software/Hardware Auditing
  */
 app.get('/api/ai/utilities/:mode', (req, res) => {
     const { mode } = req.params; 
@@ -109,17 +109,10 @@ app.get('/api/ai/utilities/:mode', (req, res) => {
 
     if (mode === 'physics') {
         utilityResult = { engine: "AI Quantum Physics Model", matrixEquation: "Ψ(huma) = H_core * |Tunapac>", state: "Quantized" };
-    } else if (mode === 'osmosis') {
+        } else if (mode === "osmosis") {
         utilityResult = { engine: "AI Network Osmosis Pipeline", dataAbsorptionRate: "700,000,000 baseline nodes/sec", permeability: "Optimal" };
-    } else if (mode === 'security-audit') {
-        utilityResult = { engine: "AI Hacker & Audit Daemon", baselineVulnerabilities: "0 Detected", architectureStatus: "Isolated from host device OS boundaries" };
-    } else {
-        return res.status(404).json({ error: "Requested utility module layer not recognized." });
-    }
 
-    return res.json({ success: true, metrics: utilityResult });
-});
-} else if (mode === 'security-audit') {
+    } else if (mode === "security-audit") {
         utilityResult = {
             engine: "AI Hacker & Audit Daemon",
             architectureStatus: "Isolated from host device OS boundaries",
@@ -130,15 +123,20 @@ app.get('/api/ai/utilities/:mode', (req, res) => {
             },
             baselineVulnerabilities: "0 Detected"
         };
-// =================================================================
-// SERVER INITIALIZATION
-// =================================================================
+
+    } else {
+        return res.status(404).json({ error: "Requested utility module layer not recognized." });
+    }
+
+    return res.json({ success: true, metrics: utilityResult });
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`===================================================`);
-    console.log(`🚀 HUMANLEDGER UNIFIED ENGINE ONLINE (Port ${PORT})`);
-    console.log(`🪙 Standalone Humanity Chain Supply: ${TOTAL_SUPPLY} Huma`);
-    console.log(`🧠 Quantum AI GPT-10.5 Core Hub: Fully Integrated`);
-    console.log(`🔮 Taros Oracle & Dedicated Asset Generators: Online`);
-    console.log(`===================================================`);
+    console.log("===================================================");
+    console.log(`[1m[32m🚀 HUMANLEDGER UNIFIED ENGINE ONLINE (Port ${PORT})[0m`);
+    console.log("🪙 Standalone Humanity Chain Supply: 700,000,000 Huma");
+    console.log("🧠 Quantum AI GPT-10.5 Core Hub: Fully Integrated");
+    console.log("🔮 Taros Oracle & Dedicated Asset Generators: Online");
+    console.log("===================================================");
 });
